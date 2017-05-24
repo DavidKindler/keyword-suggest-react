@@ -2,26 +2,23 @@ import React, { Component } from 'react';
 
 const SearchList = (props) => {
     const keywordArr = props.keywordArr;
-    var keywordList =<tr><td></td></tr>; 
-    if (keywordArr) {
+    const tableClass = props.tableClass;
+    var keywordList = null;
+    if (keywordArr && keywordArr.length > 0) {
         keywordList = props.keywordArr.map((keyword) => {
-           var regex = /(<([^>]+)>)/ig
-            ,  title = keyword.T.replace(regex, "");
             return (
-                <tr key={keyword.N}><td>{title}</td></tr>
+                <tr key={keyword}><td>{keyword}</td></tr>
             )
         })
     } else {
-        keywordList = <tr><td></td></tr>;
-    } 
+        keywordList = null;
+    }
     return (
-            <div>
-                <table className="table table-borderd table-compressed">
-                <tbody>
+        <table className={tableClass}>
+            <tbody>
                     {keywordList}        
-                </tbody>    
-                </table>
-            </div>
+            </tbody>    
+        </table>
     );
 }
 
